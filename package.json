@@ -1,0 +1,25 @@
+{
+  "name": "firstsql",
+  "version": "1.0.0",
+  "description": "playing with sequlise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js -p 4243"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geordzNZ/FirstSQL.git"
+  },
+  "author": "Geordie King",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geordzNZ/FirstSQL/issues"
+  },
+  "homepage": "https://github.com/geordzNZ/FirstSQL#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "sequelize": "^6.15.0",
+    "tedious": "^14.2.0"
+  }
+}
