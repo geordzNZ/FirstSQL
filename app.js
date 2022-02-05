@@ -1,18 +1,32 @@
 console.log('hi from main.js')
 require('dotenv').config()
-const { Sequelize } = require('sequelize');
 console.log((process.env.SECRET_KEY))
 
-// Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize('GEORDIESHP', 'username','password' {
-  host: 'localhost',
-  dialect: 'mssql'
+
+
+const knex = require('knex')({
+    client: 'mssql',
+    connection: {
+      server : process.env.DB_SERVER,
+      port : 1433,
+      user : process.env.DB_USER,
+      password : process.env.DB_PASSWORD,
+      database : 'travelMapper'
+    }
 });
+  
+knex.select('*').from('Places').where('PlaceName','Woking')
+    .then(places => {
+        places.forEach(place => {
+            console.log(place)
+        })
+        console.log('Records: ',places.length)
+    }).catch(err => {
+        console.log('ERROR:',err)
+    }).finally(function () {
+        knex.destroy()
+    })
 
 
-try {
-    sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
+
+
