@@ -44,16 +44,26 @@ const knex = require('knex')({
 //     })
 
 
-//Insert an entry into the TodoList
 // knex.select('*').from('dbo.TodoList')
 //     .then(todos => {
-//         todos.map(todo => {
-//             console.log(todo)
-//         })
-//         console.log('Records: ', todos.length)
-//     }).catch(err => {
-//         console.log('ERROR:',err)
-//        })
+    //         todos.map(todo => {
+        //             console.log(todo)
+        //         })
+        //         console.log('Records: ', todos.length)
+        //     }).catch(err => {
+            //         console.log('ERROR:',err)
+            //        })
+            
+    //Insert an entry into the TodoList
+knex('dbo.TodoList').insert(
+    {
+        Title: `TestInsert2`,
+        Description: 'Sent from KNEX',
+        Status: 'New',
+        CreatedBy: 'Geordie'
+    }) .finally(function () {
+        knex.destroy()
+    })   
 
 let insertArr = []
 for (let i = 3; i <= 5; i++) { 
