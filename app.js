@@ -1,9 +1,8 @@
 console.log('hi from main.js')
 require('dotenv').config()
-console.log((process.env.SECRET_KEY))
 
 
-
+//Set up connection
 const knex = require('knex')({
     client: 'mssql',
     connection: {
@@ -28,20 +27,47 @@ const knex = require('knex')({
 //         knex.destroy()
 //     })
 
-let queryRes = []
-    
-    knex.select('PlaceId','PlaceName', 'Tag').from('Places')
-    .then(places => {
-        queryRes = places.map(place => {
-            return {id:place.PlaceId, name: place.PlaceName}
-        })
-        console.log('Records: ', places.length)
-        console.log(queryRes)
-        console.log(queryRes[1])
-        console.log(queryRes[3])
-    }).catch(err => {
-        console.log('ERROR:',err)
-    }).finally(function () {
+// let queryRes = []
+//     knex.select('PlaceId','PlaceName', 'Tag').from('Places')
+//     .then(places => {
+//         queryRes = places.map(place => {
+//             return {id:place.PlaceId, name: place.PlaceName}
+//         })
+//         console.log('Records: ', places.length)
+//         console.log(queryRes)
+//         console.log(queryRes[1])
+//         console.log(queryRes[3])
+//     }).catch(err => {
+//         console.log('ERROR:',err)
+//     }).finally(function () {
+//         knex.destroy()
+//     })
+
+
+//Insert an entry into the TodoList
+// knex.select('*').from('dbo.TodoList')
+//     .then(todos => {
+//         todos.map(todo => {
+//             console.log(todo)
+//         })
+//         console.log('Records: ', todos.length)
+//     }).catch(err => {
+//         console.log('ERROR:',err)
+//        })
+
+let insertArr = []
+for (let i = 3; i <= 5; i++) { 
+    insertArr.push({
+        Title: `TestInsert${i}`,
+        Description: 'Sent from KNEX',
+        Status: 'New',
+        CreatedBy: 'Geordie'
+    })
+}
+
+knex('dbo.TodoList').insert(
+        insertArr
+    ) .finally(function () {
         knex.destroy()
     })
 
