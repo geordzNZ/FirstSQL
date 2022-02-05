@@ -14,19 +14,35 @@ const knex = require('knex')({
       database : 'travelMapper'
     }
 });
-  
-knex.select('*').from('Places').where('PlaceName','Woking')
+
+
+// knex.select('*').from('Places').where('PlaceName','Woking')
+//     .then(places => {
+//         places.forEach(place => {
+//             console.log(place)
+//         })
+//         console.log('Records: ',places.length)
+//     }).catch(err => {
+//         console.log('ERROR:',err)
+//     }).finally(function () {
+//         knex.destroy()
+//     })
+
+let queryRes = []
+    
+    knex.select('PlaceId','PlaceName', 'Tag').from('Places')
     .then(places => {
-        places.forEach(place => {
-            console.log(place)
+        queryRes = places.map(place => {
+            return {id:place.PlaceId, name: place.PlaceName}
         })
-        console.log('Records: ',places.length)
+        console.log('Records: ', places.length)
+        console.log(queryRes)
+        console.log(queryRes[1])
+        console.log(queryRes[3])
     }).catch(err => {
         console.log('ERROR:',err)
     }).finally(function () {
         knex.destroy()
     })
-
-
 
 
