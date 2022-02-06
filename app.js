@@ -46,39 +46,70 @@ const knex = require('knex')({
 
 // knex.select('*').from('dbo.TodoList')
 //     .then(todos => {
-    //         todos.map(todo => {
-        //             console.log(todo)
-        //         })
-        //         console.log('Records: ', todos.length)
-        //     }).catch(err => {
-            //         console.log('ERROR:',err)
-            //        })
+//             todos.map(todo => {
+//                     console.log(todo)
+//                 })
+//                 console.log('Records: ', todos.length)
+//             }).catch(err => {
+//                     console.log('ERROR:',err)
+//                    })
             
     //Insert an entry into the TodoList
-knex('dbo.TodoList').insert(
-    {
-        Title: `TestInsert2`,
-        Description: 'Sent from KNEX',
-        Status: 'New',
-        CreatedBy: 'Geordie'
-    }) .finally(function () {
-        knex.destroy()
-    })   
+// knex('dbo.TodoList').insert(
+//     {
+//         Title: `TestInsert2`,
+//         Description: 'Sent from KNEX',
+//         Status: 'New',
+//         CreatedBy: 'Geordie'
+//     }) .finally(function () {
+//         knex.destroy()
+//     })
 
-let insertArr = []
-for (let i = 3; i <= 5; i++) { 
-    insertArr.push({
-        Title: `TestInsert${i}`,
-        Description: 'Sent from KNEX',
-        Status: 'New',
-        CreatedBy: 'Geordie'
-    })
-}
+// let insertArr = []
+// for (let i = 1; i <= 5; i++) {
+//     insertArr.push({
+//         Title: `TestInsert${i}`,
+//         Description: 'Sent from KNEX',
+//         Status: 'New',
+//         CreatedBy: 'Geordie'
+//     })
+// }
 
-knex('dbo.TodoList').insert(
-        insertArr
-    ) .finally(function () {
-        knex.destroy()
-    })
+// knex('dbo.TodoList').insert(
+//     insertArr
+//     ) .finally(function () {
+//         knex.destroy()
+//     })
 
 
+//UPDATE TABLES
+// knex('TodoList')
+//     .where('TodoID', '=', '3')
+//     .update({
+//         title: 'Updated 2',
+
+
+//     })
+
+
+// COUNT ROWS IN TABLE
+// knex.select('*').from('Places')
+//     .then(places => {
+//         console.log('Records: ',places.length)
+//     }).catch(err => {
+//         console.log('ERROR:',err)
+//     }).finally(function () {
+//         knex.destroy()
+//     })
+
+// let countPlaces = 0
+// knex("Places")
+//   .count("* as cntPlaces")
+//   .first()
+//   .then(total => {
+//       console.log('a:',total)
+//       console.log('b:', total.cntPlaces)
+//       countPlaces = total.cntPlaces
+//       console.log('c:', countPlaces)
+//   });
+// console.log('d:', countPlaces)
