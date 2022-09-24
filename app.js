@@ -57,7 +57,7 @@ const knex = require('knex')({
     //Insert an entry into the TodoList
 // knex('dbo.TodoList').insert(
 //     {
-//         Title: `TestInsert2`,
+//         Title: `TestInsert6`,
 //         Description: 'Sent from KNEX',
 //         Status: 'New',
 //         CreatedBy: 'Geordie'
@@ -66,7 +66,7 @@ const knex = require('knex')({
 //     })
 
 // let insertArr = []
-// for (let i = 1; i <= 5; i++) {
+// for (let i = 21; i <= 25; i++) {
 //     insertArr.push({
 //         Title: `TestInsert${i}`,
 //         Description: 'Sent from KNEX',
@@ -74,12 +74,18 @@ const knex = require('knex')({
 //         CreatedBy: 'Geordie'
 //     })
 // }
+// console.log('INSERTING:')
+// insertArr.forEach(td => console.log(`   -   ${td.Title}`))
+// console.log('INSERTED')
 
-// knex('dbo.TodoList').insert(
-//     insertArr
-//     ) .finally(function () {
-//         knex.destroy()
-//     })
+// knex('dbo.TodoList')
+//     .insert(
+//         insertArr,
+//         ['TodoID', 'Title'],
+//         { includeTriggerModifications: true })
+//     .then(function(rows) { console.log(rows) })
+//     .finally(function () { knex.destroy() })
+
 
 
 //UPDATE TABLES
@@ -113,3 +119,26 @@ const knex = require('knex')({
 //       console.log('c:', countPlaces)
 //   });
 // console.log('d:', countPlaces)
+
+// //Deleteing
+// knex('dbo.TodoList')
+//     .where('Title', 'TestInsert21')
+//     .del(['TodoID', 'Title'])
+//     .then(function (rowsDeleted) { console.log(rowsDeleted) })
+//     .finally(function () { knex.destroy() })
+
+//     knex('dbo.TodoList')
+//     .where('Title', 'TestInsert25')
+//     .del()
+//     .then(function (count) { console.log(`${count} rows deleted`) })
+//     // .del(['TodoID', 'Title'])
+//     // .then(function (rowsDeleted) { console.log(rowsDeleted) })
+//     .finally(function () { knex.destroy() })
+
+    // knex('dbo.TodoList')
+    // .where('TodoID','>=',95 )
+    // .del()
+    // .then(function (count) { console.log(`${count} rows deleted`) })
+    // // .del(['TodoID', 'Title'])
+    // // .then(function (rowsDeleted) { console.log(rowsDeleted) })
+    // .finally(function () { knex.destroy() })
